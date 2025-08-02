@@ -9,7 +9,7 @@ app.post("/login",(req,res)=>{
     if(!name || !password){
         return res.status(400).json({message:"missing name or password"})
     }
-    if (name === "Saam" || password === "1234"){
+    if (name === "Saam" && password === "1234"){
         return res.status(200).json({message:"Login Successfull"})
     }
     else{

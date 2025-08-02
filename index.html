@@ -29,16 +29,13 @@
             password:password
            }
            fetch("http://localhost:3000/login",{
-             method:POST,
+             method:"POST",
              headers:{
                 'Content-Type':'application/json'
              },
              body:JSON.stringify(data)
            })
-           .then(response=>{
-            if(!response.ok){
-                throw new Error("Network Response is not ok") 
-            }
+           .then(response=>response.json())
             return response.json()
             .then(result=>{
                 console.log('success:',result)
