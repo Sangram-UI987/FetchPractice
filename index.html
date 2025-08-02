@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+</head>
+<body>
+    <div>
+        <input type="text" placeholder="Enter name" name="" id="name">
+        <input type="password" name="" placeholder="Enter password" id="password">
+        <button id="btn">Submit</button>
+    </div>
+    <script>
+        let nameTag=document.getElementById("name")
+        let passwordTag=document.getElementById("password")
+        let BtnTag=document.getElementById("btn")
+
+        BtnTag.addEventListener('click',()=>{
+           const name=nameTag.value.trim()  
+           const password=passwordTag.value
+
+           if(name === "" || password === "" ){
+            alert("Invaid Input")
+            return
+           }
+           const data={
+            name:name,
+            password:password
+           }
+           fetch("",{
+             method:POST,
+             headers:{
+                'Content-Type':'application/json'
+             },
+             body:JSON.stringify(data)
+           })
+           .then(response=>{
+            if(!response.ok){
+                throw new Error("Network Response is not ok") 
+            }
+            return response.json()
+            .then(result=>{
+                console.log('success:',result)
+                alert("Login Successful")
+            })
+            .catch(err=>{
+                console.error("Error:",err)
+                alert("Login Failed")
+            })
+           })
+        })
+    </script>
+</body>
+</html>
